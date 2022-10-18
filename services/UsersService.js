@@ -53,6 +53,14 @@ class UsersService {
             };
         }
     }
+
+    async deleteUser(userId) {
+        await this.userModel.findByIdAndRemove(userId);
+
+        return {
+            message: 'User Deleted Successfully!'
+        };
+    }
 }
 
 module.exports = UsersService;

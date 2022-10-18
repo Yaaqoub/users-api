@@ -23,8 +23,16 @@ const updateUsers = async function(req, res, next) {
     return res.status(200).send(updateUsersProcess);
 };
 
+const deleteUser = async function(req, res, next) {
+
+    let deleteUserProcess = await usersServices.deleteUser(req.params.userId);
+
+    return res.status(200).send(deleteUserProcess);
+};
+
 module.exports = {
     createUser,
     listUsers,
-    updateUsers
+    updateUsers,
+    deleteUser
 }
