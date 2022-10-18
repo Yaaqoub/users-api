@@ -10,6 +10,11 @@ app.get('/', (req, res) => {
     });
 });
 
+// Routes
+const users = require('./routes/users');
+
+app.use('/v1', [users]);
+
 app.listen(port, () => {
     console.log(`Server is starting on port ${port}`);
 });
