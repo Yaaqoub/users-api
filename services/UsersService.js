@@ -23,6 +23,14 @@ class UsersService {
             };
         }
     }
+
+    async listUsers() {
+        let _users = await this.userModel.find().exec();
+
+        return {
+            users: _users
+        };
+    }
 }
 
 module.exports = UsersService;
