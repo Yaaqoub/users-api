@@ -16,7 +16,15 @@ const listUsers = async function(req, res, next) {
     return res.status(200).send(listUsersProcess);
 };
 
+const updateUsers = async function(req, res, next) {
+
+    let updateUsersProcess = await usersServices.updateUsers(req.params.userId, req.body);
+
+    return res.status(200).send(updateUsersProcess);
+};
+
 module.exports = {
     createUser,
-    listUsers
+    listUsers,
+    updateUsers
 }
