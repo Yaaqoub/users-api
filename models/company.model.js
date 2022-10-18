@@ -3,12 +3,16 @@ const mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let CompanySchema = new Schema({
-    name : {
+    name: {
         type: String
     },
-    city : {
+    city: {
         type: String
-    }
+    },
+    users: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }]
 }, {
     timestamps: true
 });

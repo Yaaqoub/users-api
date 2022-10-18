@@ -3,17 +3,21 @@ const mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let UserSchema = new Schema({
-    firstName : {
+    firstName: {
         type: String
     },
-    lastName : {
+    lastName: {
         type: String
     },
-    email : {
+    email: {
         type: String
     },
-    password : {
+    password: {
         type: String
+    },
+    company: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Company'
     }
 }, {
     timestamps: true
