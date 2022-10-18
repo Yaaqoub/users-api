@@ -1,9 +1,12 @@
-
+const { User } = require('./../models');
+const UsersService = require('./../services/UsersService');
+const usersServices = new UsersService({ User });
 
 const createUser = async function(req, res, next) {
-    return res.status(200).send({
-        message: 'yaaay it works!!'
-    });
+
+    let createUserProcess = await usersServices.creatUser(req.body);
+
+    return res.status(200).send(createUserProcess);
 };
 
 module.exports = {
