@@ -1,0 +1,7 @@
+{
+  "name": "User-API",
+  "version": "1.0.0",
+  "description": "User management API",
+  "title": "User Management API",
+  "url" : "http://localhost:3000/v1"
+}
