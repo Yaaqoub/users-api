@@ -3,6 +3,7 @@ const logger = require('morgan');
 const cors = require('cors');
 const createError = require('http-errors');
 const pe = require('parse-error');
+const rateLimit = require('express-rate-limit');
 
 const app = express();
 const port = 3000;
@@ -17,6 +18,16 @@ app.use(express.urlencoded({
 // CORS
 app.options("*", cors());
 app.use(cors());
+
+// Rate limit
+app.use(
+    rateLimit({
+        windowMs: 15 * 60 * 1000,
+        max: 50,
+        message: 'You exceeded 50 request in 15 minutes!!',
+        headers: true
+    })
+);
 
 app.get('/', (req, res) => {
     res.json({
