@@ -76,6 +76,37 @@ class UsersService {
             message: 'User Deleted Successfully!'
         };
     }
+
+    async login(data) {
+        if (data.email && data.password) {
+            let _user = await this.userModel.findOne({
+                email: data.email
+            }).exec();
+
+            if (_user) {
+                let isPwdValid = _user.comparePassword(data.password);
+
+                if (isPwdValid) {
+                    return {
+                        data: _user,
+                        token: _user.getJWT()
+                    };
+                } else {
+                    return {
+                        message: 'Password is not valid!'
+                    };
+                }
+            } else {
+                return {
+                    message: 'User Not Found!'
+                };
+            }
+        } else {
+            return {
+                message: 'Missing Data!!'
+            };
+        }
+    }
 }
 
 module.exports = UsersService;

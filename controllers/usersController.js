@@ -30,9 +30,17 @@ const deleteUser = async function(req, res, next) {
     return res.status(200).send(deleteUserProcess);
 };
 
+const loginUser = async function(req, res, next) {
+
+    let loginProcess = await usersServices.login(req.body);
+
+    return res.status(200).send(loginProcess);
+};
+
 module.exports = {
     createUser,
     listUsers,
     updateUsers,
-    deleteUser
+    deleteUser,
+    loginUser
 }
