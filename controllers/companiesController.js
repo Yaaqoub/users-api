@@ -1,6 +1,6 @@
-const { Company } = require('./../models');
+const { Company, User } = require('./../models');
 const CompaniesService = require('./../services/CompaniesService');
-const companiesService = new CompaniesService({ Company });
+const companiesService = new CompaniesService({ Company, User });
 
 const creatCompany = async function(req, res, next) {
 
@@ -30,9 +30,17 @@ const deleteCompany = async function(req, res, next) {
     return res.status(200).send(deleteCompanyProcess);
 };
 
+const addUsersToCompany = async function(req, res, next) {
+
+    let addUsersToCompanyProcess = await companiesService.addUsersToCompany(req.params.companyId, req.body);
+
+    return res.status(200).send(addUsersToCompanyProcess);
+};
+
 module.exports = {
     creatCompany,
     listCompanies,
     updateCompany,
-    deleteCompany
+    deleteCompany,
+    addUsersToCompany
 }

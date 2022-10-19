@@ -1,7 +1,8 @@
 class CompaniesService {
 
-    constructor({ Company }) {
+    constructor({ Company, User }) {
         this.companyModel = Company;
+        this.userModel = User;
     }
 
     async creatCompany(data) {
@@ -59,6 +60,32 @@ class CompaniesService {
         return {
             message: 'Company Deleted Successfully!'
         };
+    }
+
+    async addUsersToCompany(companyId, data) {
+        // Check if company exists
+        let _company = await this.companyModel.findById(companyId).exec();
+
+        if (_company) {
+            for (let i = 0; i < data.users.length; i++) {
+                let _user = await this.userModel.findOne({
+                    email: data.users[i]
+                }).exec();
+
+                if (_user) {
+                    _company.users.push(_user._id);
+                }
+                await _company.save();
+            }
+
+            return {
+                message: 'Users added to company successfully!'
+            };
+        } else {
+            return {
+                message: 'Failed! Company Not Found!'
+            };
+        }
     }
 }
 
