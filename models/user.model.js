@@ -44,6 +44,14 @@ UserSchema.methods.getJWT = function () {
     });
 };
 
+UserSchema.methods.toClient = function () {
+    return {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        email: this.email
+    };
+};
+
 let userSchema = mongoose.model('User', UserSchema);
 
 module.exports = userSchema;

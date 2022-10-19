@@ -25,7 +25,7 @@ class UsersService {
     }
 
     async listUsers(paginationData) {
-
+        let usersList = [];
         let limit = paginationData.limit || 10;
         let page = paginationData.page || 0;
 
@@ -41,9 +41,13 @@ class UsersService {
             .limit(limit)
             .skip(limit * page);
 
+        for (let i = 0; i < _users.length; i++) {
+            usersList.push(_users[i].toClient());
+        }
+
         return {
             count: _users.length,
-            users: _users
+            users: usersList
         };
     }
 
