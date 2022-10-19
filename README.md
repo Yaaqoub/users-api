@@ -12,6 +12,11 @@ npm install
 ```
 
 ## Run API
+
+### Install Nodemon
+```
+npm install -g nodemon
+```
 ```
 npm start
 ```

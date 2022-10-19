@@ -1,3 +1,4 @@
+const config = require('./config.js');
 const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
@@ -6,7 +7,7 @@ const pe = require('parse-error');
 const rateLimit = require('express-rate-limit');
 
 const app = express();
-const port = 3000;
+const port = config.PORT;
 
 app.use(logger('dev'));
 app.use(express.json({limit: '800mb'}));
@@ -31,7 +32,7 @@ app.use(
 
 app.get('/', (req, res) => {
     res.json({
-        version: 'v1.0.0',
+        version: config.API_VERSION,
         status: true
     });
 });
@@ -59,7 +60,7 @@ app.use(function(err, req, res, next) {
 });
 
 app.listen(port, () => {
-    console.log(`Server is starting on port ${port}`);
+    console.log(`Server is starting on port ${port} - ${config.NODE_ENV} mode.`);
 });
 
 // Important because it prevents nodejs app from crashing

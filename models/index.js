@@ -3,9 +3,9 @@ const path = require('path');
 const basename = path.basename(__filename);
 const mongoose = require('mongoose');
 
-const databaseHost = 'localhost';
-const databasePort = '27017';
-const databaseName = 'users-api-db';
+const databaseHost = process.env.DB_HOST;
+const databasePort = process.env.DB_PORT;
+const databaseName = process.env.DB_NAME;
 
 const mongo_connection_string = `mongodb://${databaseHost}:${databasePort}/${databaseName}`;
 
