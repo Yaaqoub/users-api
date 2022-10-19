@@ -37,10 +37,18 @@ const addUsersToCompany = async function(req, res, next) {
     return res.status(200).send(addUsersToCompanyProcess);
 };
 
+const listOneCompany = async function(req, res, next) {
+
+    let listOneCompanyProcess = await companiesService.listOneCompany(req.params.companyId);
+
+    return res.status(200).send(listOneCompanyProcess);
+};
+
 module.exports = {
     creatCompany,
     listCompanies,
     updateCompany,
     deleteCompany,
-    addUsersToCompany
+    addUsersToCompany,
+    listOneCompany
 }

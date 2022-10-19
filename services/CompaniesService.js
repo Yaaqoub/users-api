@@ -33,6 +33,20 @@ class CompaniesService {
         };
     }
 
+    async listOneCompany(companyId) {
+        let _company = await this.companyModel.findById(companyId).populate('users').exec();
+
+        if (_company) {
+            return {
+                company: _company
+            };
+        } else {
+            return {
+                message: 'Company Not Found!'
+            };
+        }
+    }
+
     async updateCompany (companyId, data) {
         // Check if company exists
         let _company = await this.companyModel.findById(companyId).exec();
