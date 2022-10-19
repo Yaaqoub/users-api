@@ -27,8 +27,9 @@ app.get('/', (req, res) => {
 
 // Routes
 const users = require('./routes/users');
+const companies = require('./routes/companies');
 
-app.use('/v1', [users]);
+app.use('/v1', [users, companies]);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
