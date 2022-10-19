@@ -24,10 +24,25 @@ class UsersService {
         }
     }
 
-    async listUsers() {
-        let _users = await this.userModel.find().exec();
+    async listUsers(paginationData) {
+
+        let limit = paginationData.limit || 10;
+        let page = paginationData.page || 0;
+
+        let searchQuery = {};
+
+        if (paginationData.name) {
+            searchQuery = {
+                firstName: paginationData.name
+            };
+        }
+
+        let _users = await this.userModel.find(searchQuery)
+            .limit(limit)
+            .skip(limit * page);
 
         return {
+            count: _users.length,
             users: _users
         };
     }

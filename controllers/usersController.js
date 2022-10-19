@@ -11,7 +11,7 @@ const createUser = async function(req, res, next) {
 
 const listUsers = async function(req, res, next) {
 
-    let listUsersProcess = await usersServices.listUsers();
+    let listUsersProcess = await usersServices.listUsers(req.query);
 
     return res.status(200).send(listUsersProcess);
 };
